@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>羅詩樺 Shih-Hua Luo — Integrated Marketing × Content Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1714; --stone: #6b6560; --cream: #f7f4ef;
+    --warm: #e8e2d9; --accent: #b85c38; --accent-light: #e8c4b0; --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', 'Noto Serif TC', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem; background: rgba(247,244,239,0.92);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--warm);
+  }
+  .nav-logo { font-family: 'Noto Serif TC', serif; font-weight: 600; font-size: 1.05rem; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); text-decoration: none; transition: color 0.2s; font-weight: 500; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+  .hero-left { padding: 7rem 4rem 5rem; display: flex; flex-direction: column; justify-content: center; }
+  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1.5rem; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.1; color: var(--ink); margin-bottom: 0.5rem; }
+  .hero-name span { display: block; font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--stone); margin-top: 0.3rem; }
+  .hero-desc-block { margin-top: 2.5rem; max-width: 440px; }
+  .hero-desc-zh { font-size: 1.05rem; line-height: 1.85; color: var(--stone); font-family: 'Noto Serif TC', serif; font-weight: 300; }
+  .hero-desc-en { font-size: 0.88rem; line-height: 1.8; color: #a09990; font-family: 'DM Sans', sans-serif; font-weight: 300; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--warm); font-style: italic; }
+  .hero-cta { margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 0.8rem 2rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; text-decoration: none; transition: all 0.25s; }
+  .btn-primary { background: var(--ink); color: var(--cream); }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+  .hero-right { background: var(--ink); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 4rem; }
+  .hero-right::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px); }
+  .hero-stats { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--accent-light); line-height: 1; }
+  .stat-label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.4rem; font-weight: 300; }
+  .hero-bg-text { position: absolute; top: 8rem; left: -2rem; font-family: 'Playfair Display', serif; font-size: 14rem; font-weight: 700; color: rgba(255,255,255,0.03); line-height: 1; user-select: none; white-space: nowrap; }
+
+  section { padding: 7rem 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--accent-light); max-width: 60px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.2; color: var(--ink); }
+
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; margin-top: 4rem; }
+  .profile-block { background: var(--cream); padding: 2.5rem; border-left: 3px solid var(--accent); }
+  .profile-role { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1.2rem; }
+  .profile-info { display: flex; flex-direction: column; gap: 0.6rem; }
+  .profile-info a, .profile-info span { font-size: 0.9rem; color: var(--stone); text-decoration: none; }
+  .profile-info a:hover { color: var(--accent); }
+  .lang-item { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--warm); font-size: 0.9rem; }
+  .lang-name { font-weight: 500; }
+  .lang-level { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); background: var(--warm); padding: 0.2rem 0.7rem; }
+  .about-text-zh { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; line-height: 2.1; color: #3d3a37; font-weight: 300; }
+  .about-text-zh p + p { margin-top: 1.5rem; }
+  .about-text-en { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; line-height: 1.9; color: var(--stone); font-weight: 300; font-style: italic; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--warm); }
+  .about-text-en p + p { margin-top: 1.2rem; }
+  .highlight { color: var(--accent); font-weight: 600; }
+
+  #experience { background: var(--cream); }
+  .timeline { margin-top: 4rem; }
+  .timeline-item { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 3rem 0; border-top: 1px solid var(--warm); opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+  .timeline-date { font-size: 0.8rem; color: var(--stone); padding-top: 0.3rem; font-weight: 300; }
+  .timeline-date strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
+  .timeline-company { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.4rem; }
+  .timeline-role { font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 600; color: var(--ink); margin-bottom: 1rem; line-height: 1.3; }
+  .timeline-desc { font-size: 0.93rem; line-height: 1.9; color: var(--stone); font-family: 'Noto Serif TC', serif; font-weight: 300; }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
+  .tag { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; background: var(--warm); color: var(--stone); font-weight: 500; }
+
+  #skills { background: var(--ink); }
+  #skills .section-label { color: var(--accent-light); }
+  #skills .section-label::after { background: rgba(255,255,255,0.2); }
+  #skills .section-title { color: var(--cream); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; }
+  .skill-card { background: var(--ink); padding: 3rem 2.5rem; border: 1px solid rgba(255,255,255,0.07); transition: background 0.3s; }
+  .skill-card:hover { background: rgba(184,92,56,0.15); }
+  .skill-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .skill-name { font-family: 'Noto Serif TC', serif; font-size: 1rem; font-weight: 600; color: var(--cream); margin-bottom: 0.8rem; }
+  .skill-items { list-style: none; font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 2; font-family: 'Noto Serif TC', serif; font-weight: 300; }
+  .skill-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .tool-tag { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); }
+
+  #projects { background: var(--white); }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 4rem; }
+  .project-card { background: var(--cream); padding: 2.8rem; border-top: 3px solid transparent; transition: border-color 0.3s, transform 0.3s; }
+  .project-card:hover { border-top-color: var(--accent); transform: translateY(-4px); }
+  .project-client { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.8rem; }
+  .project-title { font-family: 'Noto Serif TC', serif; font-size: 1.25rem; font-weight: 600; color: var(--ink); margin-bottom: 1rem; line-height: 1.4; }
+  .project-desc { font-size: 0.9rem; line-height: 1.9; color: var(--stone); font-family: 'Noto Serif TC', serif; font-weight: 300; }
+  .project-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+  #contact { background: var(--cream); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-top: 4rem; align-items: center; }
+  .contact-text { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; line-height: 2; color: var(--stone); font-weight: 300; }
+  .contact-text-en { font-family: 'DM Sans', sans-serif; font-size: 0.88rem; line-height: 1.9; color: #a09990; font-weight: 300; font-style: italic; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--warm); }
+  .contact-links { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-link { display: flex; align-items: center; gap: 1.2rem; text-decoration: none; color: var(--ink); padding: 1.5rem 2rem; background: var(--white); border-left: 3px solid transparent; transition: border-color 0.25s, transform 0.25s; }
+  .contact-link:hover { border-left-color: var(--accent); transform: translateX(6px); }
+  .contact-link-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .contact-link-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); font-weight: 500; }
+  .contact-link-val { color: var(--ink); font-weight: 500; margin-top: 0.2rem; font-size: 0.85rem; }
+
+  footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; letter-spacing: 0.08em; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-left > * { opacity: 0; animation: fadeUp 0.8s forwards; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-name { animation-delay: 0.25s; }
+  .hero-desc-block { animation-delay: 0.4s; }
+  .hero-cta { animation-delay: 0.55s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; } .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; } .hero-right { min-height: 280px; } .hero-left { padding: 5rem 2rem 3rem; }
+    .container { padding: 0 2rem; } .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .timeline-item { grid-template-columns: 1fr; gap: 1rem; } .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; } .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">羅詩樺</a>
+  <ul class="nav-links">
+    <li><a href="#about">關於我</a></li>
+    <li><a href="#experience">工作歷程</a></li>
+    <li><a href="#skills">專業技能</a></li>
+    <li><a href="#projects">作品集</a></li>
+    <li><a href="#contact">聯絡方式</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">整合行銷 · 內容策略 · 媒體公關</div>
+    <h1 class="hero-name">羅詩樺<span>Shih-Hua Luo</span></h1>
+    <div class="hero-desc-block">
+      <p class="hero-desc-zh">數位媒體領域深耕 <strong>10年</strong>，橫跨健康醫療、科技、生活風格等領域。擅長整合行銷專案執行、內容策展與品牌傳播策略，曾與微軟、AWS、遠傳等指標性企業合作。</p>
+      <p class="hero-desc-en">A digital media professional with 10+ years of experience across healthcare, tech, and lifestyle sectors. Specializing in integrated marketing, content strategy, and brand communications — with a track record of partnering with Microsoft, AWS, and Taiwan's leading media groups.</p>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">查看作品集</a>
+      <a href="#contact" class="btn btn-outline">聯絡我</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-text">LUO</div>
+    <div class="hero-stats">
+      <div><div class="stat-num">10+</div><div class="stat-label">年數位媒體<br>工作經驗</div></div>
+      <div><div class="stat-num">30+</div><div class="stat-label">大型整合<br>行銷專案</div></div>
+      <div><div class="stat-num">30%</div><div class="stat-label">廣告投放<br>報名率提升</div></div>
+      <div><div class="stat-num">8+</div><div class="stat-label">主流媒體<br>報導刊登</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-label">關於我 · About</div>
+    <h2 class="section-title">文字是工具，<br>策略是核心</h2>
+    <div class="about-grid">
+      <div>
+        <div class="profile-block">
+          <div class="profile-role">聯絡資訊 · Contact</div>
+          <div class="profile-info">
+            <span>📱 0905-639-623</span>
+            <a href="mailto:shih648@gmail.com">✉️ shih648@gmail.com</a>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <div class="section-label">語言能力</div>
+          <div class="lang-item"><span class="lang-name">英語 English</span><span class="lang-level">精通 · TOEIC 950</span></div>
+          <div class="lang-item"><span class="lang-name">日語 Japanese</span><span class="lang-level">N4 · Conversational</span></div>
+          <div class="lang-item"><span class="lang-name">西班牙語 Spanish</span><span class="lang-level">Beginner</span></div>
+        </div>
+        <div style="margin-top:2.5rem;">
+          <div class="section-label">學歷 · Education</div>
+          <div style="padding:1.5rem 0;border-top:1px solid var(--warm);">
+            <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);font-weight:500;">2008 – 2012</div>
+            <div style="font-family:'Noto Serif TC',serif;font-size:1.1rem;font-weight:600;margin-top:0.4rem;">國立台灣大學</div>
+            <div style="color:var(--stone);font-size:0.85rem;margin-top:0.2rem;">National Taiwan University</div>
+            <div style="color:var(--stone);font-size:0.85rem;margin-top:0.2rem;">外國語文學系 · B.A. Foreign Languages & Literature</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="about-text-zh">
+          <p>畢業於<span class="highlight">國立臺灣大學外國語文學系</span>，在數位媒體領域累積了超過10年的實戰經驗。從健康醫療媒體的外電編譯記者，到綜合議題媒體集團的資深專案經理，每一個階段都在磨練「讓對的內容，遇到對的人」的能力。</p>
+          <p>曾參與<span class="highlight">10個以上大型企業整合行銷專案</span>，涵蓋科技、金融、政府、娛樂等不同領域。透過數位廣告投放操作，成功將講座活動報名率提升30%以上，並在專案期間同步執行影音採訪、市場調查、線上直播等多元媒體內容。</p>
+          <p>2023年起以<span class="highlight">自由接案者</span>身份持續深耕，合作夥伴包括關鍵評論網媒體集團、天下雜誌、Cheers、遠見雜誌等一線媒體，以及Pinkoi電商、資策會等多元產業客戶。</p>
+        </div>
+        <div class="about-text-en">
+          <p>A graduate of National Taiwan University's Department of Foreign Languages & Literature, I have spent over a decade navigating the evolving landscape of digital media — from translating international health news as a journalist, to leading complex integrated marketing campaigns as a senior project manager at one of Taiwan's top media groups.</p>
+          <p>My work sits at the intersection of <span class="highlight">storytelling and strategy</span>. I've managed 10+ large-scale campaigns across tech, finance, government, and entertainment sectors, boosting event sign-up rates by over 30% through targeted digital advertising, while simultaneously producing video interviews, market surveys, and live-stream content within a single project.</p>
+          <p>Since 2023, I operate as an independent consultant, partnering with leading Taiwanese media including The News Lens, CommonWealth Magazine, and Cheers, as well as brands like Pinkoi and the Institute for Information Industry.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-label">工作歷程</div>
+    <h2 class="section-title">每段經歷，<br>都是一次進化</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date"><strong>2023</strong>迄今</div>
+        <div>
+          <div class="timeline-company">自由接案 · Freelance</div>
+          <div class="timeline-role">整合行銷專案管理 × 品牌行銷顧問</div>
+          <div class="timeline-desc">獨立操刀數位內容及論壇活動策展規劃，提供議題策略制定與採訪撰稿、影音腳本設計。合作媒體涵蓋關鍵評論網、天下雜誌、遠見雜誌、風傳媒等一線媒體。</div>
+          <div class="timeline-tags"><span class="tag">內容策展</span><span class="tag">品牌顧問</span><span class="tag">社群廣告</span><span class="tag">媒體合作</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date"><strong>2018</strong>2018 – 2023</div>
+        <div>
+          <div class="timeline-company">關鍵評論網媒體集團 · The News Lens</div>
+          <div class="timeline-role">資深專案經理 · Senior Project Manager</div>
+          <div class="timeline-desc">針對企業品牌客戶需求規劃內容行銷專案，整合運用各行銷管道。開創新型影音案型，成交微軟、AWS、遠傳、文策院等指標性客戶，提升後續提案成交率20%。每年平均執行3個以上大型整合行銷專案，承攬金額為全部門最高。</div>
+          <div class="timeline-tags"><span class="tag">整合行銷</span><span class="tag">影音企劃</span><span class="tag">客戶開發</span><span class="tag">Microsoft</span><span class="tag">AWS</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date"><strong>2015</strong>2015 – 2018</div>
+        <div>
+          <div class="timeline-company">品辰傳媒股份有限公司</div>
+          <div class="timeline-role">企劃主任 · Planning Director</div>
+          <div class="timeline-desc">創立《健康報馬仔》紙本月刊，負責主題企劃、採訪與編排。帶領5-6人跨功能企劃團隊，推動自製內容企劃並優化網站流量與社群成效。</div>
+          <div class="timeline-tags"><span class="tag">團隊管理</span><span class="tag">雜誌企劃</span><span class="tag">內容編輯</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date"><strong>2014</strong>2014 – 2015</div>
+        <div>
+          <div class="timeline-company">Perth, Australia</div>
+          <div class="timeline-role">Gap Year · Working Holiday</div>
+          <div class="timeline-desc">前往澳洲柏斯打工旅遊，體驗多元產業工作，歷練危機應變能力與積極主動的工作態度。</div>
+          <div class="timeline-tags"><span class="tag">跨文化溝通</span><span class="tag">自我成長</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date"><strong>2012</strong>2012 – 2014</div>
+        <div>
+          <div class="timeline-company">品辰傳媒股份有限公司</div>
+          <div class="timeline-role">外電編譯記者 · International News Translator</div>
+          <div class="timeline-desc">搜集每日國際外電醫藥類新聞，翻譯編輯成繁體中文報導，並協助大型專題新聞的內容企劃。</div>
+          <div class="timeline-tags"><span class="tag">英文外電翻譯</span><span class="tag">醫療新聞</span><span class="tag">採訪撰稿</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-label">專業技能</div>
+    <h2 class="section-title">跨領域整合，<br>是我最強的武器</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">📋</div><div class="skill-name">專案管理 · Project Management</div><ul class="skill-items"><li>時程、預算、資源控管</li><li>客戶關係與外部廠商維運</li><li>跨部門需求媒合</li></ul><div class="skill-tools"><span class="tool-tag">Slack</span><span class="tool-tag">Trello</span><span class="tool-tag">Notion</span><span class="tool-tag">Google Workspace</span></div></div>
+      <div class="skill-card"><div class="skill-icon">✍️</div><div class="skill-name">內容行銷企劃 · Content Marketing</div><ul class="skill-items"><li>市場調查分析</li><li>客戶案例研究</li><li>廣告／社群文案</li><li>數位內容編輯排版</li></ul><div class="skill-tools"><span class="tool-tag">PowerPoint</span><span class="tool-tag">Keynote</span><span class="tool-tag">Canva</span></div></div>
+      <div class="skill-card"><div class="skill-icon">📰</div><div class="skill-name">新聞採訪 · Journalism</div><ul class="skill-items"><li>英文外電新聞編譯</li><li>新聞時事追蹤報導</li><li>新聞稿撰寫</li><li>專家採訪</li></ul><div class="skill-tools"><span class="tool-tag">國際新聞</span><span class="tool-tag">醫療議題</span><span class="tool-tag">科技議題</span></div></div>
+      <div class="skill-card"><div class="skill-icon">📢</div><div class="skill-name">媒體公關 · Media PR</div><ul class="skill-items"><li>主導媒體策略與內容企劃</li><li>建立 30+ 位媒體聯繫關係</li><li>籌辦媒體午餐會與專訪</li><li>建立媒體名單資料庫</li></ul><div class="skill-tools"><span class="tool-tag">媒體關係</span><span class="tool-tag">新聞稿</span><span class="tool-tag">品牌曝光</span></div></div>
+      <div class="skill-card"><div class="skill-icon">🎬</div><div class="skill-name">影音製作 · Video Production</div><ul class="skill-items"><li>影音腳本大綱設計</li><li>製片執行與協調</li><li>基礎社群影片剪輯</li></ul><div class="skill-tools"><span class="tool-tag">腳本企劃</span><span class="tool-tag">直播執行</span><span class="tool-tag">影音採訪</span></div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">數位廣告 · Digital Advertising</div><ul class="skill-items"><li>數位廣告投放操作</li><li>廣告策略規劃</li><li>成效分析與優化</li></ul><div class="skill-tools"><span class="tool-tag">社群廣告</span><span class="tool-tag">成效追蹤</span><span class="tool-tag">市場調查</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-label">精選作品集 · Portfolio</div>
+    <h2 class="section-title">用作品說話</h2>
+    <div class="projects-grid">
+      <div class="project-card"><div class="project-client">行動基因 Act Genomics</div><div class="project-title">公關 PR 議題操作</div><div class="project-desc">協助建立媒體關係，共獲得至少8篇具代表性媒體報導，刊登於中時、中央社、udn、遠見、良醫健康等主流媒體。安排創辦人及高階主管媒體專訪，籌辦媒體餐敘與實驗室邀訪活動，深化品牌公信力與市場聲量。</div><div class="project-meta"><span class="tag">媒體公關</span><span class="tag">品牌策略</span><span class="tag">遺傳性癌症議題</span></div></div>
+      <div class="project-card"><div class="project-client">Microsoft × 關鍵評論網</div><div class="project-title">數位轉型影音企劃</div><div class="project-desc">2019–2020年共完成兩季9部系列影音，片長10-15分鐘。成功開啟 B2B 端討論聲量，合作夥伴包含中華電信、遠傳、台達電子、水利署、高雄市政府、KKBOX等。</div><div class="project-meta"><span class="tag">影音企劃</span><span class="tag">B2B行銷</span><span class="tag">數位轉型</span></div></div>
+      <div class="project-card"><div class="project-client">《餐豐露宿》節目</div><div class="project-title">影音節目執行製片</div><div class="project-desc">2020–2021年共完成6集，片長約10分鐘，平均單集觀看次數達5萬。負責企劃提案、腳本大綱、主持人邀約、拍攝場地協調及數位廣告策略投放。</div><div class="project-meta"><span class="tag">節目製作</span><span class="tag">執行製片</span><span class="tag">廣告投放</span></div></div>
+      <div class="project-card"><div class="project-client">SDGs 永續報導</div><div class="project-title">數位專題報導製作</div><div class="project-desc">從零開始開發數位線上專題報導，深入採訪全台各地永續相關產業，涵蓋前期訪談調查、網頁建置規劃，呈現多元視角與深度關注。</div><div class="project-meta"><span class="tag">數位專題</span><span class="tag">永續議題</span><span class="tag">深度採訪</span></div></div>
+      <div class="project-card"><div class="project-client">朵茉麗蔻 Decorté</div><div class="project-title">企業品牌形象採訪</div><div class="project-desc">撰寫品牌形象廣編文章，赴日進行獨家採訪，深入了解品牌核心理念，轉化為引人入勝的中文內容，協助品牌在台灣市場建立精緻形象。</div><div class="project-meta"><span class="tag">品牌形象</span><span class="tag">廣編內容</span><span class="tag">赴日採訪</span></div></div>
+      <div class="project-card" style="background:var(--ink);border:none;"><div class="project-client" style="color:var(--accent-light);">合作客戶 × 媒體夥伴</div><div class="project-title" style="color:var(--cream);">橫跨多元產業的豐富履歷</div><div class="project-desc" style="color:rgba(255,255,255,0.5);">關鍵評論網 · 天下雜誌 · Cheers · 遠見雜誌 · 風傳媒 · 數位時代 · Pinkoi · 資策會 · 微軟 · AWS · 遠傳 · 文策院</div><div class="project-meta" style="margin-top:1.5rem;"><span class="tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);">科技</span><span class="tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);">健康醫療</span><span class="tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);">政府</span><span class="tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);">電商</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-label">聯絡方式 · Contact</div>
+    <h2 class="section-title">讓我們一起<br>創造好內容</h2>
+    <div class="contact-inner">
+      <div>
+        <div class="contact-text">無論是整合行銷專案合作、品牌內容策略諮詢，或是媒體公關需求，歡迎透過以下方式與我聯繫。期待聽到你的故事，一起找出最適合的傳播策略。</div>
+        <div class="contact-text-en">Whether you're looking for an integrated marketing partner, a brand content strategist, or a media PR consultant — I'd love to hear from you. Let's find the right story to tell, together.</div>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="tel:0905639623"><span class="contact-link-icon">📱</span><div><div class="contact-link-label">電話 · Phone</div><div class="contact-link-val">0905-639-623</div></div></a>
+        <a class="contact-link" href="mailto:shih648@gmail.com"><span class="contact-link-icon">✉️</span><div><div class="contact-link-label">電子郵件 · Email</div><div class="contact-link-val">shih648@gmail.com</div></div></a>
+        <a class="contact-link" href="https://www.linkedin.com/in/" target="_blank"><span class="contact-link-icon">💼</span><div><div class="contact-link-label">LinkedIn</div><div class="contact-link-val">查看完整 LinkedIn 檔案</div></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 羅詩樺 Shih-Hua Luo</span>
+  <span>Integrated Marketing · Content Strategy · Media PR</span>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.timeline-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  items.forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id'); });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--accent)' : ''; });
+  });
+</script>
+</body>
+</html>
