@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自由接案整體成效 — 羅詩樺 Shih-Hua Luo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #37363B;
+    --stone: #6E6976;
+    --cream: #F4F0E5;
+    --warm: #EAE3D3;
+    --accent: #6C5E9B;
+    --accent-light: #C9BFE0;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', 'Noto Serif TC', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(247,244,239,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--warm);
+  }
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.15rem; font-weight: 600;
+    letter-spacing: 0.08em; color: var(--ink); text-decoration: none;
+  }
+  .nav-links { list-style: none; display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.85rem; letter-spacing: 0.04em;
+    color: var(--stone); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-back { color: var(--accent) !important; }
+
+  /* ── CONTAINER ── */
+  section { padding: 6rem 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 0.8rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--accent-light);
+    max-width: 60px;
+  }
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2.4rem; font-weight: 300; line-height: 1.2;
+    color: var(--ink); margin-bottom: 2.5rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 6rem 0 3rem; background: var(--white);
+    border-bottom: 1px solid var(--warm);
+  }
+  .hero .eyebrow {
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 3.2rem; font-weight: 300; line-height: 1.15;
+    color: var(--ink); margin-bottom: 1.4rem;
+  }
+  .hero .lede {
+    font-family: 'Noto Serif TC', serif; font-weight: 300;
+    font-size: 1.1rem; line-height: 2; color: var(--stone); max-width: 620px;
+  }
+  .hero .period {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    color: var(--accent); font-size: 1rem; margin-bottom: 1.5rem;
+  }
+
+  /* ── STAT BAND ── */
+  .stat-band { background: var(--ink); }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem; padding: 3.5rem 0;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 3.2rem; color: var(--accent-light); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-top: 0.6rem;
+    line-height: 1.5;
+  }
+  .stat-note {
+    text-align: center; padding-bottom: 2.2rem;
+    font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3);
+  }
+
+  /* ── PROSE ── */
+  .prose {
+    font-family: 'Noto Serif TC', serif; font-weight: 300;
+    font-size: 1.05rem; line-height: 2.1; color: #3d3a37; max-width: 760px;
+  }
+  .highlight { color: var(--accent); font-weight: 600; }
+
+  /* ── SERVICE / CARD GRID ── */
+  #services { background: var(--cream); }
+  .card-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  }
+  .svc-card {
+    background: var(--white); padding: 2.4rem;
+    border-top: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .svc-card:hover { border-top-color: var(--accent); transform: translateY(-4px); }
+  .svc-card h3 {
+    font-family: 'Noto Serif TC', serif; font-weight: 400;
+    font-size: 1.3rem; color: var(--ink); margin-bottom: 0.8rem;
+  }
+  .svc-card p {
+    font-family: 'Noto Serif TC', serif; font-weight: 300;
+    font-size: 0.92rem; line-height: 1.9; color: var(--stone); margin-bottom: 1.4rem;
+  }
+  .tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag {
+    font-size: 0.72rem; letter-spacing: 0.08em;
+    padding: 0.3rem 0.8rem; background: var(--warm);
+    color: var(--stone); font-weight: 500;
+  }
+
+  /* ── INDUSTRY ── */
+  #industries { background: var(--white); }
+  .ind-list { display: flex; flex-direction: column; gap: 0; }
+  .ind-row {
+    display: grid; grid-template-columns: 200px 1fr; gap: 2rem;
+    padding: 1.8rem 0; border-top: 1px solid var(--warm); align-items: baseline;
+  }
+  .ind-row:last-child { border-bottom: 1px solid var(--warm); }
+  .ind-name {
+    font-family: 'Noto Serif TC', serif; font-weight: 400;
+    font-size: 1.1rem; color: var(--ink);
+  }
+  .ind-clients { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  /* ── OUTCOMES ── */
+  #outcomes { background: var(--cream); }
+  .out-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-bottom: 2.5rem;
+  }
+  .out-card {
+    background: var(--white); padding: 2.4rem 2rem; text-align: center;
+    border-bottom: 3px solid var(--accent-light);
+  }
+  .out-num {
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 2.8rem; color: var(--accent); line-height: 1;
+  }
+  .out-label {
+    font-size: 0.9rem; color: var(--stone); margin-top: 0.8rem; line-height: 1.6;
+  }
+
+  /* ── CTA / FOOTER ── */
+  .cta { background: var(--ink); text-align: center; }
+  .cta h2 {
+    font-family: 'Noto Serif TC', serif; font-weight: 300;
+    font-size: 2rem; color: var(--cream); margin-bottom: 2rem;
+  }
+  .btn {
+    display: inline-block; padding: 0.9rem 2.4rem; margin: 0 0.4rem;
+    font-size: 0.9rem; letter-spacing: 0.04em; text-decoration: none;
+    border: 1px solid var(--accent-light); color: var(--cream);
+    transition: background 0.25s, color 0.25s;
+  }
+  .btn:hover { background: var(--accent); border-color: var(--accent); }
+  footer {
+    display: flex; justify-content: space-between;
+    padding: 2.5rem 4rem; background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .container { padding: 0 2rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .section-title { font-size: 1.8rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.5rem; }
+    .card-grid, .out-grid { grid-template-columns: 1fr; }
+    .ind-row { grid-template-columns: 1fr; gap: 0.8rem; }
+    footer { flex-direction: column; gap: 0.6rem; padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">羅詩樺</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">關於我</a></li>
+      <li><a href="index.html#experience">工作歷程</a></li>
+      <li><a href="index.html#skills">專業技能</a></li>
+      <li><a class="nav-back" href="index.html#projects">← 返回作品集</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">作品集 · 案例研究</div>
+      <div class="period">2023 — 迄今</div>
+      <h1>自由接案整體成效</h1>
+      <p class="lede">
+        以自由接案者身份，為企業、品牌與公部門客戶提供從策略發想、企劃提案到落地執行的一站式整合服務。合作橫跨醫療生技、政府公部門、科技產業、消費品牌與媒體出版五大領域。
+      </p>
+    </div>
+  </header>
+
+  <!-- STAT BAND -->
+  <div class="stat-band">
+    <div class="container">
+      <div class="stat-grid">
+        <div>
+          <div class="stat-num">2023</div>
+          <div class="stat-label">起 · 迄今持續深耕</div>
+        </div>
+        <div>
+          <div class="stat-num">17+</div>
+          <div class="stat-label">年度合作客戶</div>
+        </div>
+        <div>
+          <div class="stat-num">40+</div>
+          <div class="stat-label">年度執行專案</div>
+        </div>
+        <div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">大服務類型</div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-note">＊ 客戶數與專案數以 2024 年單一年度為統計基準</div>
+  </div>
+
+  <!-- BACKGROUND -->
+  <section id="background">
+    <div class="container">
+      <div class="section-label">案例背景</div>
+      <h2 class="section-title">從單一委託，<br>到全案統籌</h2>
+      <p class="prose">
+        自由接案不是承接零散的案子，而是成為客戶可信賴的長期專案夥伴。多數合作始於一個明確的商業目標——一場論壇、一支影音、一次品牌發聲——由我從<span class="highlight">策略發想、企劃提案到落地執行</span>一手統籌，並依專案需求整合設計、社群、廣告與外部廠商等資源。三年間累積的跨產業經驗，讓我能快速理解不同領域客戶的語言，把對的內容，帶到對的受眾面前。
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-label">服務範疇</div>
+      <h2 class="section-title">五大服務，<br>一站到位</h2>
+      <div class="card-grid">
+
+        <div class="svc-card">
+          <h3>專案管理</h3>
+          <p>時程、預算、資源與跨廠商統籌，確保多方協作下的專案品質與交付節奏。</p>
+          <div class="tag-row">
+            <span class="tag">Citiesocial</span>
+            <span class="tag">醫美圈圈平台</span>
+            <span class="tag">Promittere</span>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <h3>企劃 · 標案</h3>
+          <p>公部門與品牌標案的企劃撰寫與提案，將政策與品牌訴求轉化為完整企劃書。</p>
+          <div class="tag-row">
+            <span class="tag">國立臺灣博物館</span>
+            <span class="tag">僑委會</span>
+            <span class="tag">桃園市都發局</span>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <h3>採訪 · 撰稿</h3>
+          <p>醫藥、科技與產業專題採訪撰稿，將專業議題轉譯為受眾能共鳴的內容。</p>
+          <div class="tag-row">
+            <span class="tag">數位時代</span>
+            <span class="tag">Cheers 工作人</span>
+            <span class="tag">風傳媒</span>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <h3>媒體公關</h3>
+          <p>媒體關係經營、新聞稿撰寫與專訪籌辦，深化品牌公信力與市場聲量。</p>
+          <div class="tag-row">
+            <span class="tag">行動基因</span>
+            <span class="tag">富邦金控</span>
+            <span class="tag">品牌曝光</span>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <h3>社群 · 內容維運</h3>
+          <p>品牌定位策略與社群平台營運，建立一致的品牌聲音與長期內容資產。</p>
+          <div class="tag-row">
+            <span class="tag">A.D.A.N 全時呵護</span>
+            <span class="tag">快點行銷</span>
+            <span class="tag">品牌定位</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section id="industries">
+    <div class="container">
+      <div class="section-label">代表合作</div>
+      <h2 class="section-title">橫跨五大產業</h2>
+      <div class="ind-list">
+
+        <div class="ind-row">
+          <div class="ind-name">醫療 · 生技健康</div>
+          <div class="ind-clients">
+            <span class="tag">行動基因</span>
+            <span class="tag">AZ 藥廠</span>
+            <span class="tag">百濟神州</span>
+            <span class="tag">輝致醫藥</span>
+            <span class="tag">醫美圈圈平台</span>
+          </div>
+        </div>
+
+        <div class="ind-row">
+          <div class="ind-name">政府 · 公部門</div>
+          <div class="ind-clients">
+            <span class="tag">原住民族語言基金會</span>
+            <span class="tag">國立臺灣博物館</span>
+            <span class="tag">國家漫畫博物館</span>
+            <span class="tag">僑委會</span>
+            <span class="tag">桃園市都發局</span>
+          </div>
+        </div>
+
+        <div class="ind-row">
+          <div class="ind-name">科技 · 產業</div>
+          <div class="ind-clients">
+            <span class="tag">友達光電</span>
+            <span class="tag">智慧機器人研習營</span>
+            <span class="tag">立子顧問</span>
+          </div>
+        </div>
+
+        <div class="ind-row">
+          <div class="ind-name">消費品牌 · 電商</div>
+          <div class="ind-clients">
+            <span class="tag">Citiesocial</span>
+            <span class="tag">富邦金控</span>
+            <span class="tag">金品利</span>
+            <span class="tag">安怡奶粉</span>
+          </div>
+        </div>
+
+        <div class="ind-row">
+          <div class="ind-name">媒體 · 出版</div>
+          <div class="ind-clients">
+            <span class="tag">關鍵評論網</span>
+            <span class="tag">數位時代</span>
+            <span class="tag">Cheers 工作人</span>
+            <span class="tag">天下雜誌</span>
+            <span class="tag">風傳媒</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section id="outcomes">
+    <div class="container">
+      <div class="section-label">具體成效</div>
+      <h2 class="section-title">數字看得見</h2>
+      <div class="out-grid">
+        <div class="out-card">
+          <div class="out-num">+30%</div>
+          <div class="out-label">數位廣告操作<br>活動報名率提升</div>
+        </div>
+        <div class="out-card">
+          <div class="out-num">10–20</div>
+          <div class="out-label">專案高峰期<br>每月同步執行項目</div>
+        </div>
+        <div class="out-card">
+          <div class="out-num">5 × 5</div>
+          <div class="out-label">五大產業 ×<br>五大服務整合能量</div>
+        </div>
+      </div>
+      <p class="prose">
+        透過數位廣告策略操作，將講座活動報名率提升 <span class="highlight">30% 以上</span>；並在專案高峰期同步管理 10–20 個進行中項目，橫跨醫療、政府、科技、品牌與媒體五大領域，持續以穩定的交付品質累積長期合作關係。
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>有專案需要整合夥伴嗎？</h2>
+      <a class="btn" href="mailto:shih648@gmail.com">✉️ shih648@gmail.com</a>
+      <a class="btn" href="index.html#projects">← 返回作品集</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 羅詩樺 Shih-Hua Luo</span>
+    <span>整合行銷 · 內容策略 · 媒體公關</span>
+  </footer>
+
+</body>
+</html>

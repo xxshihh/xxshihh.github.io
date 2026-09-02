@@ -10,12 +10,12 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #1a1714;
-    --stone: #6b6560;
-    --cream: #f7f4ef;
-    --warm: #e8e2d9;
-    --accent: #b85c38;
-    --accent-light: #e8c4b0;
+    --ink: #37363B;
+    --stone: #6E6976;
+    --cream: #F4F0E5;
+    --warm: #EAE3D3;
+    --accent: #6C5E9B;
+    --accent-light: #C9BFE0;
     --white: #ffffff;
   }
 
@@ -767,6 +767,19 @@
         </div>
       </div>
 
+      <a href="case-freelance.html" class="project-card" style="text-decoration:none; display:block;">
+        <div class="project-client">自由接案 2023–迄今</div>
+        <div class="project-title">整體成效 · 案例研究</div>
+        <div class="project-desc">
+          橫跨 17+ 客戶、40+ 專案的整合服務全紀錄，涵蓋醫療、政府、科技、品牌與媒體五大領域。點擊查看完整案例 →
+        </div>
+        <div class="project-meta">
+          <span class="tag">全案統籌</span>
+          <span class="tag">跨產業</span>
+          <span class="tag">案例研究</span>
+        </div>
+      </a>
+
       <div class="project-card" style="background:var(--ink);border:none;">
         <div class="project-client" style="color:var(--accent-light);">合作客戶 × 媒體夥伴</div>
         <div class="project-title" style="color:var(--cream);">橫跨多元產業的豐富履歷</div>
@@ -784,6 +797,53 @@
     </div>
   </div>
 </section>
+
+  <!-- ===== 電子報區塊 · 時滯錯覺 ===== -->
+  <section class="ds-newsletter">
+    <div class="ds-newsletter__inner">
+      <p class="ds-newsletter__eyebrow">Newsletter · 個人書寫</p>
+      <h2 class="ds-newsletter__title">時滯錯覺</h2>
+      <p class="ds-newsletter__tagline">
+        一場關於「時間落差」的書寫實驗。試著在旅途日常、內在對話、工作掙扎與那些懸而未決的提問中，為你打撈出碎裂在快節奏生活裡的真實。
+      </p>
+      <a class="ds-newsletter__btn" href="https://contd.substack.com/" target="_blank" rel="noopener">前往訂閱 →</a>
+
+      <!-- 想改成站內直接訂閱，把下面這段註解打開、上面按鈕可留可刪 -->
+      <!--
+      <iframe src="https://contd.substack.com/embed" width="100%" height="150"
+              style="border:0;background:transparent;margin-top:1.5rem;max-width:480px;"
+              frameborder="0" scrolling="no"></iframe>
+      -->
+    </div>
+  </section>
+
+  <style>
+    .ds-newsletter { background: var(--warm); color: var(--ink); padding: 6rem 4rem; text-align: center; }
+    .ds-newsletter__inner { max-width: 600px; margin: 0 auto; }
+    .ds-newsletter__eyebrow {
+      font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin: 0 0 1.2rem;
+    }
+    .ds-newsletter__title {
+      font-family: 'Noto Serif TC', serif; font-weight: 300;
+      font-size: 2.4rem; letter-spacing: 0.04em; color: var(--ink); margin: 0 0 1.2rem;
+    }
+    .ds-newsletter__tagline {
+      font-family: 'Noto Serif TC', serif; font-weight: 300;
+      font-size: 1.02rem; line-height: 2; color: var(--stone); margin: 0 0 2rem;
+    }
+    .ds-newsletter__btn {
+      display: inline-block; font-size: 0.9rem; letter-spacing: 0.04em;
+      color: var(--cream); background: var(--ink);
+      padding: 0.9rem 2.4rem; text-decoration: none; transition: background 0.25s ease;
+    }
+    .ds-newsletter__btn:hover { background: var(--accent); }
+    @media (max-width: 900px) {
+      .ds-newsletter { padding: 4rem 2rem; }
+      .ds-newsletter__title { font-size: 1.8rem; }
+    }
+  </style>
+  <!-- ===== 電子報區塊結束 ===== -->
 
 <!-- CONTACT -->
 <section id="contact">
