@@ -197,6 +197,33 @@
   .proj--dark .proj-client { color: var(--plum-soft); }
   .proj--dark .proj-title { color: var(--paper); }
   .proj--dark .proj-desc { color: rgba(244,240,229,.6); }
+  /* full-width featured case-study banner — breaks out of the grid, large type */
+  .proj-feature {
+    display: grid; grid-template-columns: 1fr auto; gap: clamp(1.4rem, 4vw, 3rem);
+    align-items: center; margin-top: clamp(1rem, 3vw, 1.8rem);
+    padding: clamp(1.9rem, 4.5vw, 3.2rem);
+    background: var(--paper-2); border-top: 3px solid var(--plum);
+    text-decoration: none; color: inherit;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .proj-feature:hover { transform: translateY(-3px); box-shadow: 0 16px 42px -22px rgba(108,94,155,.65); }
+  .pf-eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; color: var(--plum); margin-bottom: .7rem; }
+  .pf-title { font-family: var(--serif); font-weight: 900; font-size: clamp(1.9rem, 4.6vw, 3rem); line-height: 1.04; letter-spacing: -.01em; color: var(--ink-deep); }
+  .pf-desc { font-size: .98rem; line-height: 1.85; color: #46434a; max-width: 42em; margin-top: 1rem; }
+  .pf-action {
+    display: inline-flex; align-items: center; gap: .55em; white-space: nowrap;
+    font-family: var(--mono); font-size: .8rem; letter-spacing: .1em;
+    background: var(--plum); color: var(--paper); padding: 1rem 1.7rem;
+    transition: background .22s;
+  }
+  .proj-feature:hover .pf-action { background: var(--ink-deep); }
+  .pf-action .arw { font-size: 1.2em; transition: transform .22s; }
+  .proj-feature:hover .pf-action .arw { transform: translateX(5px); }
+  .proj--full { grid-column: 1 / -1; }
+  @media (max-width: 760px) {
+    .proj-feature { grid-template-columns: 1fr; gap: 1.4rem; }
+    .pf-action { justify-content: center; }
+  }
 
   /* 永續・地方 採訪選輯 */
   .sel { margin-top: clamp(2.5rem, 6vw, 3.8rem); }
@@ -227,6 +254,18 @@
   /* ── FOOTER ── */
   footer { background: var(--ink-deep); color: rgba(244,240,229,.5); }
   .ft-inner { max-width: 1120px; margin: 0 auto; padding: clamp(1.8rem, 4vw, 2.4rem) clamp(1.25rem, 5vw, 4rem); display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; justify-content: space-between; font-family: var(--mono); font-size: .74rem; letter-spacing: .06em; }
+
+  /* ── ON ASSIGNMENT · 現場側拍 ── */
+  .onsite { background: var(--paper); border-top: 1px solid var(--line); padding-block: clamp(3rem, 7vw, 5rem); }
+  .onsite-eye { text-align: center; font-family: var(--mono); font-size: .74rem; letter-spacing: .16em; color: var(--plum); margin-bottom: clamp(1.8rem, 4vw, 2.6rem); }
+  .onsite-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.8rem, 2vw, 1.4rem); }
+  .onsite figure { margin: 0; overflow: hidden; }
+  .onsite img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--paper-2); transition: transform .45s ease; }
+  .onsite figure:hover img { transform: scale(1.04); }
+  .onsite figcaption { font-family: var(--mono); font-size: .7rem; letter-spacing: .04em; color: var(--stone); margin-top: .7rem; line-height: 1.55; }
+  @media (max-width: 760px) {
+    .onsite-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
 
   @media (max-width: 760px) {
     .sec-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -579,18 +618,7 @@
           <div class="proj-tags lang-en"><span class="pill">Brand Image</span><span class="pill">Advertorial</span><span class="pill">Interview in Japan</span></div>
         </div>
 
-        <a href="case-freelance.html" class="proj">
-          <div class="proj-client lang-zh">自由接案 2023–迄今</div>
-          <div class="proj-client lang-en">Freelance 2023–Present</div>
-          <div class="proj-title lang-zh">整體成效 · 案例研究 →</div>
-          <div class="proj-title lang-en">Overall Impact · Case Study →</div>
-          <div class="proj-desc lang-zh">橫跨 17+ 客戶、40+ 專案的整合服務全紀錄，涵蓋醫療、政府、科技、品牌與媒體五大領域。點擊查看完整案例。</div>
-          <div class="proj-desc lang-en">The full record of integrated services across 17+ clients and 40+ projects, spanning healthcare, government, technology, brands, and media. Click to view the full case study.</div>
-          <div class="proj-tags lang-zh"><span class="pill">全案統籌</span><span class="pill">跨產業</span><span class="pill">案例研究</span></div>
-          <div class="proj-tags lang-en"><span class="pill">Full-project Ownership</span><span class="pill">Cross-industry</span><span class="pill">Case Study</span></div>
-        </a>
-
-        <div class="proj proj--dark">
+        <div class="proj proj--dark proj--full">
           <div class="proj-client lang-zh">合作客戶 × 媒體夥伴</div>
           <div class="proj-client lang-en">Clients &amp; Media Partners</div>
           <div class="proj-title lang-zh">橫跨多元產業的豐富履歷</div>
@@ -602,6 +630,18 @@
         </div>
 
       </div>
+
+      <a href="case-freelance.html" class="proj-feature">
+        <div>
+          <div class="pf-eyebrow lang-zh">2023–迄今 · 案例研究</div>
+          <div class="pf-eyebrow lang-en">2023–Present · Case Study</div>
+          <div class="pf-title lang-zh">專案整體成效</div>
+          <div class="pf-title lang-en">Overall Project Impact</div>
+          <div class="pf-desc lang-zh">橫跨 17+ 客戶、40+ 專案的整合服務全紀錄，涵蓋醫療、政府、科技、品牌與媒體五大領域。點擊查看完整案例研究。</div>
+          <div class="pf-desc lang-en">The full record of integrated services across 17+ clients and 40+ projects, spanning healthcare, government, technology, brands, and media.</div>
+        </div>
+        <span class="pf-action"><span class="lang-zh">查看完整案例</span><span class="lang-en">View full case study</span><span class="arw">→</span></span>
+      </a>
 
       <div class="sel">
         <span class="sel-label"><span class="lang-zh">SELECTED · 永續・地方 採訪選輯</span><span class="lang-en">SELECTED · Sustainability &amp; Local Reporting</span></span>
@@ -630,6 +670,27 @@
           <span class="sel-title lang-en">From farm to table: ten years of a symbiotic economy at Yinchuan Sustainable Farm →</span>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 現場側拍 / On Assignment -->
+<section class="onsite">
+  <div class="wrap">
+    <div class="onsite-eye"><span class="lang-zh">ON ASSIGNMENT · 現場側拍</span><span class="lang-en">ON ASSIGNMENT · Behind the Interview</span></div>
+    <div class="onsite-grid">
+      <figure>
+        <img src="onsite-1.jpg" alt="採訪拍攝現場側拍" loading="lazy">
+        <figcaption><span class="lang-zh">採訪拍攝現場 · 側拍</span><span class="lang-en">On location · interview shoot</span></figcaption>
+      </figure>
+      <figure>
+        <img src="onsite-2.jpg" alt="人物專訪現場" loading="lazy">
+        <figcaption><span class="lang-zh">人物專訪 · 官方場合</span><span class="lang-en">Feature interview · official setting</span></figcaption>
+      </figure>
+      <figure>
+        <img src="onsite-3.jpg" alt="美術館影音專訪拍攝現場" loading="lazy">
+        <figcaption><span class="lang-zh">影音專訪 · 美術館拍攝現場</span><span class="lang-en">Video interview · on set</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
