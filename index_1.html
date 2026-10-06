@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>羅詩樺 — 整合行銷 × 內容策略</title>
+<script>try{if(localStorage.getItem('site-lang')==='en'){document.documentElement.setAttribute('data-lang','en');document.documentElement.setAttribute('lang','en');}}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: editorial / magazine — huge serif headlines, big numbered sections, hairline rules, mono labels. Brand palette (ivory / plum / charcoal). Single warm-paper theme by design. */
+  :root {
+    color-scheme: light;
+    --paper:    #F4F0E5;   /* 象牙底 */
+    --paper-2:  #EAE3D3;   /* 暖米（交錯區塊） */
+    --ink:      #37363B;   /* 炭灰（內文） */
+    --ink-deep: #2A292E;   /* 大標更深一階 / 深色區塊 */
+    --stone:    #6E6976;   /* 次要文字 */
+    --plum:     #6C5E9B;   /* 品牌紫 accent */
+    --plum-soft:#C9BFE0;
+    --mark:     rgba(108,94,155,0.26);  /* 螢光筆色塊（紫） */
+    --line:     #DBD3C3;   /* 髮絲線 */
+    --line-dk:  rgba(255,255,255,0.14);
+    --serif: 'Noto Serif TC', 'Songti TC', serif;
+    --sans:  'Noto Sans TC', 'PingFang TC', sans-serif;
+    --mono:  'IBM Plex Mono', ui-monospace, monospace;
+    --latin: 'Playfair Display', var(--serif);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--mark); }
+
+  /* ── BILINGUAL TOGGLE ── */
+  html[data-lang="zh"] .lang-en { display: none !important; }
+  html[data-lang="en"] .lang-zh { display: none !important; }
+  /* English reads better with a touch more line-height in the serif; keep it subtle */
+  html[data-lang="en"] body { font-family: var(--sans); }
+  .lang-toggle {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .1em;
+    background: none; border: 1px solid var(--line); color: var(--stone);
+    padding: .3rem .6rem; cursor: pointer; line-height: 1; white-space: nowrap;
+    transition: border-color .2s, color .2s;
+  }
+  .lang-toggle:hover { border-color: var(--plum); }
+  .lang-toggle .lt-sep { margin: 0 .3em; color: var(--line); }
+  html[data-lang="zh"] .lang-toggle .lt-zh { color: var(--plum); }
+  html[data-lang="en"] .lang-toggle .lt-en { color: var(--plum); }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: clamp(1.25rem, 5vw, 4rem); }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+    background: rgba(244,240,229,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1120px; margin: 0 auto;
+    padding: 1rem clamp(1.25rem, 5vw, 4rem);
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  }
+  .logo { font-family: var(--serif); font-weight: 900; font-size: 1.15rem; letter-spacing: .06em; color: var(--ink-deep); text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: clamp(.9rem, 3vw, 2rem); font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; }
+  .nav-links a { color: var(--stone); text-decoration: none; transition: color .2s; white-space: nowrap; }
+  .nav-links a:hover { color: var(--plum); }
+
+  /* ── HERO ── */
+  .hero { padding-block: clamp(3.5rem, 9vw, 7rem) clamp(2.5rem, 6vw, 4.5rem); }
+  .eyebrow {
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .14em;
+    color: var(--plum); margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .eyebrow span { color: var(--stone); }
+  h1.hero-h {
+    font-family: var(--serif); font-weight: 900;
+    font-size: clamp(2.9rem, 9.2vw, 6.1rem);
+    line-height: .98; letter-spacing: -.02em;
+    color: var(--ink-deep); margin: 0;
+    text-wrap: balance;
+  }
+  html[data-lang="en"] h1.hero-h { font-family: var(--latin); font-style: italic; letter-spacing: -.01em; }
+  mark {
+    background: linear-gradient(transparent 56%, var(--mark) 56%, var(--mark) 94%, transparent 94%);
+    color: inherit; padding: 0 .06em;
+  }
+  .hero-sub {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.02rem, 2.2vw, 1.22rem); line-height: 1.95;
+    color: var(--stone); max-width: 36em;
+    margin: clamp(2rem, 5vw, 2.8rem) 0 0;
+  }
+  .hero-id {
+    font-size: .98rem; line-height: 1.9; color: var(--ink);
+    max-width: 38em; margin: 1.4rem 0 0;
+  }
+  .hero-id b { color: var(--plum); font-weight: 500; }
+  .cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: clamp(2rem, 5vw, 2.6rem); }
+  .btn {
+    font-family: var(--mono); font-size: .78rem; letter-spacing: .1em;
+    padding: .85rem 1.8rem; text-decoration: none; transition: all .22s; cursor: pointer;
+    border: 1.5px solid var(--ink-deep); display: inline-block;
+  }
+  .btn-fill { background: var(--ink-deep); color: var(--paper); }
+  .btn-fill:hover { background: var(--plum); border-color: var(--plum); }
+  .btn-line { background: transparent; color: var(--ink-deep); }
+  .btn-line:hover { background: var(--ink-deep); color: var(--paper); }
+
+  /* ── STAT STRIP ── */
+  .stats {
+    margin-top: clamp(3rem, 7vw, 4.5rem);
+    border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat { padding: clamp(1.4rem, 3vw, 2rem) 0; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: 0; }
+  .stat .n {
+    font-family: var(--serif); font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1; color: var(--ink-deep);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .l { font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; color: var(--stone); margin-top: .6rem; line-height: 1.5; }
+
+  /* ── NUMBERED SECTION ── */
+  .section { background: var(--paper-2); padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .section--paper { background: var(--paper); }
+  .section--dark { background: var(--ink-deep); color: var(--paper); }
+  .sec-grid { display: grid; grid-template-columns: 220px 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .sec-rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 5rem); }
+  .sec-num {
+    font-family: var(--serif); font-weight: 900;
+    font-size: clamp(3rem, 7vw, 5.2rem); line-height: .9; color: var(--plum);
+    font-variant-numeric: tabular-nums;
+  }
+  .section--dark .sec-num { color: var(--plum-soft); }
+  .sec-title { font-family: var(--serif); font-weight: 900; font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--ink-deep); margin-top: .4rem; }
+  .section--dark .sec-title { color: var(--paper); }
+  .sec-kicker { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; color: var(--stone); margin-top: 1rem; max-width: 16em; line-height: 1.7; }
+  .section--dark .sec-kicker { color: rgba(244,240,229,.55); }
+
+  /* ── ABOUT ── */
+  .about-lead { font-family: var(--serif); font-weight: 400; font-size: clamp(1.05rem, 2.4vw, 1.32rem); line-height: 1.95; color: var(--ink); margin: 0 0 1.6rem; }
+  .about-p { font-size: 1rem; line-height: 2; color: #46434a; margin: 0 0 1.3rem; max-width: 40em; }
+  .about-p b, .about-lead b { color: var(--plum); font-weight: 500; }
+
+  .meta { margin-top: clamp(2rem, 5vw, 3rem); }
+  .meta-row { display: grid; grid-template-columns: 110px 1fr; gap: 1.5rem; padding: 1.1rem 0; border-top: 1px solid var(--line); align-items: baseline; }
+  .meta-k { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; color: var(--plum); }
+  .meta-v { font-size: .94rem; line-height: 1.8; color: var(--ink); }
+  .meta-v .yr { font-family: var(--mono); color: var(--stone); font-size: .82rem; }
+  .meta-v a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--plum-soft); }
+  .meta-v a:hover { color: var(--plum); }
+  .pill { display: inline-block; font-family: var(--mono); font-size: .74rem; padding: .25rem .7rem; border: 1px solid var(--line); margin: 0 .35rem .4rem 0; color: var(--stone); }
+
+  /* ── TIMELINE (02) ── */
+  .tl-item { display: grid; grid-template-columns: 150px 1fr; gap: clamp(1rem, 4vw, 3rem); padding: clamp(1.6rem, 4vw, 2.4rem) 0; border-top: 1px solid var(--line); }
+  .tl-item:first-child { border-top: 0; padding-top: 0; }
+  .tl-year { font-family: var(--serif); font-weight: 900; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--ink-deep); line-height: 1; }
+  .tl-year small { display: block; font-family: var(--mono); font-weight: 400; font-size: .72rem; color: var(--stone); margin-top: .5rem; letter-spacing: .04em; }
+  .tl-co { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; color: var(--plum); margin-bottom: .5rem; }
+  .tl-role { font-family: var(--serif); font-weight: 700; font-size: clamp(1.2rem, 2.6vw, 1.45rem); color: var(--ink-deep); margin-bottom: .8rem; }
+  .tl-desc { font-size: .96rem; line-height: 1.95; color: #46434a; max-width: 44em; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+
+  /* ── SKILLS (03, dark) ── */
+  .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-dk); border: 1px solid var(--line-dk); }
+  .skill-card { background: var(--ink-deep); padding: clamp(1.6rem, 3vw, 2.2rem); }
+  .skill-no { font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; color: var(--plum-soft); margin-bottom: 1rem; }
+  .skill-name { font-family: var(--serif); font-weight: 700; font-size: 1.2rem; color: var(--paper); margin-bottom: 1rem; }
+  .skill-items { list-style: none; margin: 0 0 1.2rem; padding: 0; font-size: .9rem; line-height: 1.95; color: rgba(244,240,229,.6); }
+  .skill-tools { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .pill-dk { font-family: var(--mono); font-size: .68rem; padding: .22rem .6rem; border: 1px solid var(--line-dk); color: rgba(244,240,229,.5); }
+
+  /* ── PROJECTS (04) ── */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 3vw, 1.8rem); }
+  .proj {
+    background: var(--paper-2); padding: clamp(1.6rem, 3vw, 2.3rem);
+    border-top: 2px solid transparent; text-decoration: none; color: inherit;
+    transition: border-color .25s, transform .25s; display: block;
+  }
+  .proj:hover { border-top-color: var(--plum); transform: translateY(-3px); }
+  .proj-client { font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; color: var(--plum); margin-bottom: .8rem; }
+  .proj-title { font-family: var(--serif); font-weight: 700; font-size: 1.18rem; color: var(--ink-deep); margin-bottom: .9rem; line-height: 1.4; }
+  .proj-desc { font-size: .92rem; line-height: 1.85; color: #46434a; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.2rem; }
+  .proj--dark { background: var(--ink-deep); }
+  .proj--dark .proj-client { color: var(--plum-soft); }
+  .proj--dark .proj-title { color: var(--paper); }
+  .proj--dark .proj-desc { color: rgba(244,240,229,.6); }
+  /* full-width featured case-study banner — breaks out of the grid, large type */
+  .proj-feature {
+    display: grid; grid-template-columns: 1fr auto; gap: clamp(1.4rem, 4vw, 3rem);
+    align-items: center; margin-top: clamp(1rem, 3vw, 1.8rem);
+    padding: clamp(1.9rem, 4.5vw, 3.2rem);
+    background: var(--paper-2); border-top: 3px solid var(--plum);
+    text-decoration: none; color: inherit;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .proj-feature:hover { transform: translateY(-3px); box-shadow: 0 16px 42px -22px rgba(108,94,155,.65); }
+  .pf-eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; color: var(--plum); margin-bottom: .7rem; }
+  .pf-title { font-family: var(--serif); font-weight: 900; font-size: clamp(1.9rem, 4.6vw, 3rem); line-height: 1.04; letter-spacing: -.01em; color: var(--ink-deep); }
+  .pf-desc { font-size: .98rem; line-height: 1.85; color: #46434a; max-width: 42em; margin-top: 1rem; }
+  .pf-action {
+    display: inline-flex; align-items: center; gap: .55em; white-space: nowrap;
+    font-family: var(--mono); font-size: .8rem; letter-spacing: .1em;
+    background: var(--plum); color: var(--paper); padding: 1rem 1.7rem;
+    transition: background .22s;
+  }
+  .proj-feature:hover .pf-action { background: var(--ink-deep); }
+  .pf-action .arw { font-size: 1.2em; transition: transform .22s; }
+  .proj-feature:hover .pf-action .arw { transform: translateX(5px); }
+  .proj--full { grid-column: 1 / -1; }
+  @media (max-width: 760px) {
+    .proj-feature { grid-template-columns: 1fr; gap: 1.4rem; }
+    .pf-action { justify-content: center; }
+  }
+
+  /* 永續・地方 採訪選輯 */
+  .sel { margin-top: clamp(2.5rem, 6vw, 3.8rem); }
+  .sel-label { font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; color: var(--plum); display: block; margin-bottom: .4rem; }
+  .sel-row { display: grid; grid-template-columns: 96px 88px 1fr; gap: 1.2rem; align-items: baseline; padding: 1.2rem 0; border-top: 1px solid var(--line); text-decoration: none; color: var(--ink-deep); transition: color .2s; }
+  .sel-row:last-child { border-bottom: 1px solid var(--line); }
+  .sel-row:hover { color: var(--plum); }
+  .sel-row:hover .sel-title { background: linear-gradient(transparent 56%, var(--mark) 56%, var(--mark) 94%, transparent 94%); }
+  .sel-media { font-family: var(--mono); font-size: .74rem; letter-spacing: .06em; color: var(--stone); }
+  .sel-topic { font-family: var(--mono); font-size: .7rem; color: var(--plum); }
+  .sel-title { font-family: var(--serif); font-weight: 500; font-size: 1.04rem; line-height: 1.6; }
+
+  /* ── NEWSLETTER BAND ── */
+  .news { background: var(--paper-2); border-block: 1px solid var(--line); padding-block: clamp(3.5rem, 8vw, 5.5rem); text-align: center; }
+  .news-eye { font-family: var(--mono); font-size: .74rem; letter-spacing: .16em; color: var(--plum); margin-bottom: 1.2rem; }
+  .news-title { font-family: var(--serif); font-weight: 900; font-size: clamp(2.4rem, 6vw, 3.6rem); letter-spacing: .04em; color: var(--ink-deep); margin: 0 0 1.4rem; }
+  html[data-lang="en"] .news-title { font-family: var(--latin); font-style: italic; }
+  .news-tag { font-family: var(--serif); font-weight: 400; font-size: clamp(1rem, 2.2vw, 1.14rem); line-height: 2; color: var(--stone); max-width: 32em; margin: 0 auto 2rem; }
+
+  /* ── CONTACT (05) ── */
+  .ct-lead { font-family: var(--serif); font-weight: 400; font-size: clamp(1.05rem, 2.4vw, 1.3rem); line-height: 1.95; color: var(--ink); max-width: 30em; margin: 0 0 clamp(1.5rem, 4vw, 2.2rem); }
+  .ct-link { display: grid; grid-template-columns: 120px 1fr; gap: 1.2rem; padding: 1.2rem 0; border-top: 1px solid var(--line); text-decoration: none; color: var(--ink-deep); align-items: baseline; transition: color .2s; }
+  .ct-link:last-child { border-bottom: 1px solid var(--line); }
+  .ct-link:hover { color: var(--plum); }
+  .ct-k { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; color: var(--plum); }
+  .ct-v { font-size: 1.02rem; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ink-deep); color: rgba(244,240,229,.5); }
+  .ft-inner { max-width: 1120px; margin: 0 auto; padding: clamp(1.8rem, 4vw, 2.4rem) clamp(1.25rem, 5vw, 4rem); display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; justify-content: space-between; font-family: var(--mono); font-size: .74rem; letter-spacing: .06em; }
+
+  @media (max-width: 760px) {
+    .sec-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .sec-rail { position: static; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .sec-num { font-size: 2.6rem; }
+    .sec-kicker { margin-top: 0; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(2) { border-right: 0; }
+    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--line); }
+    .meta-row { grid-template-columns: 1fr; gap: .4rem; }
+    .tl-item { grid-template-columns: 1fr; gap: .6rem; }
+    .skill-grid { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .sel-row { grid-template-columns: 1fr; gap: .3rem; }
+    .ct-link { grid-template-columns: 1fr; gap: .3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top"><span class="lang-zh">羅詩樺</span><span class="lang-en">Daisy Luo</span></a>
+    <div class="nav-links">
+      <a href="#about"><span class="lang-zh">關於</span><span class="lang-en">About</span></a>
+      <a href="#experience"><span class="lang-zh">歷程</span><span class="lang-en">Career</span></a>
+      <a href="#skills"><span class="lang-zh">技能</span><span class="lang-en">Skills</span></a>
+      <a href="#work"><span class="lang-zh">作品</span><span class="lang-en">Work</span></a>
+      <a href="#contact"><span class="lang-zh">聯絡</span><span class="lang-en">Contact</span></a>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="切換語言 / Switch language">
+        <span class="lt-zh">中</span><span class="lt-sep">/</span><span class="lt-en">EN</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header id="top" class="hero wrap">
+  <p class="eyebrow lang-zh">專案管理 <span>／</span> 採訪撰稿 <span>／</span> 品牌行銷顧問 <span>／</span> 論壇策展</p>
+  <p class="eyebrow lang-en">Project Management <span>／</span> Editorial &amp; Reporting <span>／</span> Brand Consulting <span>／</span> Forum Curation</p>
+
+  <h1 class="hero-h lang-zh">讓對的內容，<br>遇到<mark>對的人</mark>。</h1>
+  <h1 class="hero-h lang-en">Let the right content<br>meet <mark>the right people</mark>.</h1>
+
+  <p class="hero-sub lang-zh">
+    數位媒體領域深耕 15 年，橫跨健康醫療、科技、生活風格等領域。擅長整合行銷專案執行、內容策展與品牌傳播策略，曾與微軟、AWS、遠傳等指標性企業合作。
+  </p>
+  <p class="hero-sub lang-en">
+    Fifteen years in digital media, spanning healthcare, technology, and lifestyle. I specialize in integrated-marketing execution, content curation, and brand-communication strategy, with past work for Microsoft, AWS, FarEasTone, and other leading brands.
+  </p>
+
+  <p class="hero-id lang-zh">
+    我是<b>羅詩樺（Daisy）</b>，國立臺灣大學外國語文學系畢業，2023 年起以自由接案者身份持續深耕。
+  </p>
+  <p class="hero-id lang-en">
+    I'm <b>Daisy Luo (羅詩樺)</b>, a graduate of the Department of Foreign Languages &amp; Literatures at National Taiwan University, working independently as a freelancer since 2023.
+  </p>
+
+  <div class="cta">
+    <a href="#work" class="btn btn-fill"><span class="lang-zh">查看作品集</span><span class="lang-en">View Work</span></a>
+    <a href="#contact" class="btn btn-line"><span class="lang-zh">聯絡我</span><span class="lang-en">Get in Touch</span></a>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n">15<span style="font-size:.5em">+</span></div><div class="l"><span class="lang-zh">年數位媒體<br>工作經驗</span><span class="lang-en">Years in<br>digital media</span></div></div>
+    <div class="stat"><div class="n">20<span style="font-size:.5em">+</span></div><div class="l"><span class="lang-zh">大型整合<br>行銷專案</span><span class="lang-en">Large integrated<br>marketing projects</span></div></div>
+    <div class="stat"><div class="n">30<span style="font-size:.5em">%</span></div><div class="l"><span class="lang-zh">廣告投放<br>報名率提升</span><span class="lang-en">Lift in ad-driven<br>event sign-ups</span></div></div>
+    <div class="stat"><div class="n">8<span style="font-size:.5em">+</span></div><div class="l"><span class="lang-zh">主流媒體<br>報導刊登</span><span class="lang-en">Features in<br>major media</span></div></div>
+  </div>
+</header>
+
+<!-- 01 關於我 / About -->
+<section id="about" class="section">
+  <div class="wrap sec-grid">
+    <div class="sec-rail">
+      <div class="sec-num">01</div>
+      <div class="sec-title"><span class="lang-zh">關於我</span><span class="lang-en">About</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="about-lead lang-zh">
+        文字是工具，策略是核心。從健康醫療媒體的外電編譯記者，到綜合議題媒體集團的資深專案經理，每一個階段都在磨練「讓對的內容，遇到對的人」的能力。
+      </p>
+      <p class="about-lead lang-en">
+        Words are the tool; strategy is the core. From an international-desk medical news editor to a senior project manager at a major media group, every stage has sharpened one ability — bringing the right content to the right people.
+      </p>
+
+      <p class="about-p lang-zh">
+        2026 年，擔任<b>福爾摩沙永續保育國際論壇暨展覽</b>（內政部國家公園署主辦）專案經理與秘書處窗口，主責 33 位國際講者與 26 位國內講者的邀請與聯繫，並統籌行前協調、議程與活動流程規劃、跨單位溝通、現場執行與接待統整，以及百人交流晚宴；兩天論壇吸引千人以上報名，順利圓滿舉辦。
+      </p>
+      <p class="about-p lang-en">
+        In 2026, I served as project manager and secretariat liaison for the <b>Formosa Sustainable Conservation International Forum</b> (hosted by the National Park Service, Ministry of the Interior), leading invitations and coordination for 33 international and 26 domestic speakers, and overseeing pre-event logistics, agenda and run-of-show planning, cross-agency communication, on-site execution and hospitality, and a 100-guest networking dinner. The two-day forum drew over a thousand registrations and concluded successfully.
+      </p>
+
+      <p class="about-p lang-zh">
+        曾參與 <b>20 個以上大型企業整合行銷專案</b>，涵蓋科技、金融、政府、娛樂等不同領域。透過數位廣告投放操作，成功將講座活動報名率提升 30% 以上，並在專案期間同步執行影音採訪、市場調查、線上直播等多元媒體內容。
+      </p>
+      <p class="about-p lang-en">
+        I have contributed to <b>more than 20 large-scale enterprise integrated-marketing projects</b> across technology, finance, government, and entertainment. Through digital ad campaigns I raised event registration rates by over 30%, while running video interviews, market research, and live broadcasts throughout.
+      </p>
+
+      <p class="about-p lang-zh">
+        2023 年起以自由接案者身份持續深耕，合作夥伴包括關鍵評論網媒體集團、天下雜誌、Cheers 工作人、遠見雜誌等一線媒體，以及 Pinkoi 電商、資策會等多元產業客戶。
+      </p>
+      <p class="about-p lang-en">
+        Since 2023 I have worked independently as a freelancer, with partners including The News Lens Media Group, CommonWealth Magazine, Cheers, and Global Views Monthly, alongside clients across industries such as Pinkoi and the Institute for Information Industry.
+      </p>
+
+      <div class="meta">
+        <div class="meta-row">
+          <div class="meta-k">EDUCATION</div>
+          <div class="meta-v"><span class="yr">2008–2012</span>　<span class="lang-zh">國立臺灣大學　外國語文學系・學士</span><span class="lang-en">National Taiwan University　BA, Foreign Languages &amp; Literatures</span></div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">LANGUAGE</div>
+          <div class="meta-v lang-zh">
+            <span class="pill">英語 · TOEIC 950</span>
+            <span class="pill">日語 · JLPT N4</span>
+            <span class="pill">西班牙語 · 初學</span>
+          </div>
+          <div class="meta-v lang-en">
+            <span class="pill">English · TOEIC 950</span>
+            <span class="pill">Japanese · JLPT N4</span>
+            <span class="pill">Spanish · Beginner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 工作歷程 / Career -->
+<section id="experience" class="section section--paper">
+  <div class="wrap sec-grid">
+    <div class="sec-rail">
+      <div class="sec-num">02</div>
+      <div class="sec-title"><span class="lang-zh">工作歷程</span><span class="lang-en">Career</span></div>
+      <p class="sec-kicker"><span class="lang-zh">每段經歷，都是一次進化。</span><span class="lang-en">Every role, a step forward.</span></p>
+    </div>
+    <div class="sec-body">
+
+      <div class="tl-item">
+        <div class="tl-year">2023<small><span class="lang-zh">迄今</span><span class="lang-en">Present</span></small></div>
+        <div>
+          <div class="tl-co"><span class="lang-zh">自由接案</span><span class="lang-en">Freelance</span></div>
+          <div class="tl-role lang-zh">整合行銷專案管理 × 品牌行銷顧問</div>
+          <div class="tl-role lang-en">Integrated-Marketing PM × Brand Consultant</div>
+          <div class="tl-desc lang-zh">獨立操刀數位內容及論壇活動策展規劃，提供議題策略制定與採訪撰稿、影音大綱腳本設計服務。同時擔任品牌行銷顧問，協助市場洞察分析、社群平台營運與廣告代操。合作媒體涵蓋關鍵評論網、天下雜誌、遠見雜誌、風傳媒等一線媒體。</div>
+          <div class="tl-desc lang-en">Independently leading digital content and forum-event curation, offering issue strategy, reporting, and scriptwriting for video. Also serving as a brand marketing consultant on market insight, social-platform operations, and ad management. Media collaborations span The News Lens, CommonWealth, Global Views, and The Storm Media.</div>
+          <div class="tl-tags lang-zh"><span class="pill">內容策展</span><span class="pill">品牌顧問</span><span class="pill">社群廣告</span><span class="pill">媒體合作</span></div>
+          <div class="tl-tags lang-en"><span class="pill">Content Curation</span><span class="pill">Brand Consulting</span><span class="pill">Social Ads</span><span class="pill">Media Partnerships</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2018<small>2018–2023</small></div>
+        <div>
+          <div class="tl-co lang-zh">關鍵評論網媒體集團</div>
+          <div class="tl-co lang-en">The News Lens Media Group</div>
+          <div class="tl-role lang-zh">資深專案經理</div>
+          <div class="tl-role lang-en">Senior Project Manager</div>
+          <div class="tl-desc lang-zh">針對企業品牌客戶需求規劃內容行銷專案，整合運用各行銷管道。開創新型影音案型，成交微軟、AWS、遠傳、文策院、百富等大型指標性客戶，提升後續提案成交率 20%。每年平均執行 3 個以上大型整合行銷專案，承攬金額為全部門最高。</div>
+          <div class="tl-desc lang-en">Planned content-marketing projects for enterprise brand clients, integrating channels across the mix. Pioneered a new video format and closed major clients including Microsoft, AWS, FarEasTone, TAICCA, and 百富, lifting follow-on win rates by 20%. Delivered 3+ large integrated-marketing projects a year — the highest contract value in the department.</div>
+          <div class="tl-tags lang-zh"><span class="pill">整合行銷</span><span class="pill">影音企劃</span><span class="pill">客戶開發</span><span class="pill">Microsoft</span><span class="pill">AWS</span></div>
+          <div class="tl-tags lang-en"><span class="pill">Integrated Marketing</span><span class="pill">Video Production</span><span class="pill">Client Development</span><span class="pill">Microsoft</span><span class="pill">AWS</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2015<small>2015–2018</small></div>
+        <div>
+          <div class="tl-co lang-zh">品辰傳媒股份有限公司</div>
+          <div class="tl-co lang-en">Pinchen Media</div>
+          <div class="tl-role lang-zh">企劃主任</div>
+          <div class="tl-role lang-en">Planning Director</div>
+          <div class="tl-desc lang-zh">創立華人健康網《健康報馬仔》紙本月刊，負責主題企劃、採訪執行與編輯排版。帶領 5–6 人跨功能企劃團隊，包含設計、社群、行銷，推動自製內容企劃，優化網站流量與社群成效。</div>
+          <div class="tl-desc lang-en">Founded the print monthly 《健康報馬仔》 for the Chinese-health web portal, owning theme planning, interview execution, and editorial layout. Led a 5–6 person cross-functional team across design, social, and marketing, driving original content and improving site traffic and social performance.</div>
+          <div class="tl-tags lang-zh"><span class="pill">團隊管理</span><span class="pill">雜誌企劃</span><span class="pill">內容編輯</span></div>
+          <div class="tl-tags lang-en"><span class="pill">Team Leadership</span><span class="pill">Magazine Planning</span><span class="pill">Editorial</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2014<small>2014–2015</small></div>
+        <div>
+          <div class="tl-co">Perth, Australia</div>
+          <div class="tl-role">Gap Year · Working Holiday</div>
+          <div class="tl-desc lang-zh">前往澳洲柏斯打工旅遊，體驗多元產業工作，歷練危機應變能力與積極主動的工作態度。</div>
+          <div class="tl-desc lang-en">A working-holiday year in Perth, Australia, taking on work across varied industries and building adaptability and initiative.</div>
+          <div class="tl-tags lang-zh"><span class="pill">跨文化溝通</span><span class="pill">自我成長</span></div>
+          <div class="tl-tags lang-en"><span class="pill">Cross-cultural</span><span class="pill">Growth</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">2012<small>2012–2014</small></div>
+        <div>
+          <div class="tl-co lang-zh">品辰傳媒股份有限公司</div>
+          <div class="tl-co lang-en">Pinchen Media</div>
+          <div class="tl-role lang-zh">外電編譯記者</div>
+          <div class="tl-role lang-en">International-Desk Editor-Translator</div>
+          <div class="tl-desc lang-zh">搜集每日國際外電醫藥類新聞，翻譯編輯成繁體中文報導，並協助大型專題新聞的內容企劃。</div>
+          <div class="tl-desc lang-en">Gathered daily international medical and pharmaceutical news, translating and editing it into Traditional Chinese reporting, and supporting content planning for major features.</div>
+          <div class="tl-tags lang-zh"><span class="pill">英文外電翻譯</span><span class="pill">醫療新聞</span><span class="pill">採訪撰稿</span></div>
+          <div class="tl-tags lang-en"><span class="pill">News Translation</span><span class="pill">Medical News</span><span class="pill">Reporting</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 專業技能 / Skills -->
+<section id="skills" class="section section--dark">
+  <div class="wrap sec-grid">
+    <div class="sec-rail">
+      <div class="sec-num">03</div>
+      <div class="sec-title"><span class="lang-zh">專業技能</span><span class="lang-en">Expertise</span></div>
+      <p class="sec-kicker"><span class="lang-zh">跨領域整合，是我最強的武器。</span><span class="lang-en">Cross-disciplinary integration is my sharpest tool.</span></p>
+    </div>
+    <div class="sec-body">
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-no">S/01</div>
+          <div class="skill-name lang-zh">專案管理</div>
+          <div class="skill-name lang-en">Project Management</div>
+          <ul class="skill-items lang-zh"><li>時程、預算、資源控管</li><li>客戶關係與外部廠商維運</li><li>跨部門需求媒合</li></ul>
+          <ul class="skill-items lang-en"><li>Timeline, budget &amp; resource control</li><li>Client &amp; vendor management</li><li>Cross-team coordination</li></ul>
+          <div class="skill-tools"><span class="pill-dk">Slack</span><span class="pill-dk">Trello</span><span class="pill-dk">Notion</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-no">S/02</div>
+          <div class="skill-name lang-zh">內容行銷企劃</div>
+          <div class="skill-name lang-en">Content Marketing</div>
+          <ul class="skill-items lang-zh"><li>市場調查分析</li><li>客戶案例研究</li><li>廣告／社群文案</li><li>數位內容編輯排版</li></ul>
+          <ul class="skill-items lang-en"><li>Market research &amp; analysis</li><li>Client case studies</li><li>Ad &amp; social copywriting</li><li>Digital editing &amp; layout</li></ul>
+          <div class="skill-tools"><span class="pill-dk">PowerPoint</span><span class="pill-dk">Keynote</span><span class="pill-dk">Canva</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-no">S/03</div>
+          <div class="skill-name lang-zh">新聞採訪</div>
+          <div class="skill-name lang-en">Journalism &amp; Reporting</div>
+          <ul class="skill-items lang-zh"><li>英文外電新聞編譯</li><li>新聞時事追蹤報導</li><li>新聞稿撰寫</li><li>專家採訪</li></ul>
+          <ul class="skill-items lang-en"><li>English news translation</li><li>Current-affairs reporting</li><li>Press-release writing</li><li>Expert interviews</li></ul>
+          <div class="skill-tools lang-zh"><span class="pill-dk">國際新聞</span><span class="pill-dk">醫療議題</span><span class="pill-dk">科技議題</span></div>
+          <div class="skill-tools lang-en"><span class="pill-dk">International</span><span class="pill-dk">Healthcare</span><span class="pill-dk">Technology</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-no">S/04</div>
+          <div class="skill-name lang-zh">媒體公關</div>
+          <div class="skill-name lang-en">Media &amp; PR</div>
+          <ul class="skill-items lang-zh"><li>主導媒體策略與內容企劃</li><li>建立 30+ 位媒體聯繫關係</li><li>籌辦媒體午餐會與專訪</li><li>建立媒體名單資料庫</li></ul>
+          <ul class="skill-items lang-en"><li>Media strategy &amp; content planning</li><li>30+ media relationships</li><li>Media luncheons &amp; interviews</li><li>Media-contact database</li></ul>
+          <div class="skill-tools lang-zh"><span class="pill-dk">媒體關係</span><span class="pill-dk">新聞稿</span><span class="pill-dk">品牌曝光</span></div>
+          <div class="skill-tools lang-en"><span class="pill-dk">Media Relations</span><span class="pill-dk">Press</span><span class="pill-dk">Brand Visibility</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-no">S/05</div>
+          <div class="skill-name lang-zh">影音製作</div>
+          <div class="skill-name lang-en">Video Production</div>
+          <ul class="skill-items lang-zh"><li>影音腳本大綱設計</li><li>製片執行與協調</li><li>基礎社群影片剪輯</li></ul>
+          <ul class="skill-items lang-en"><li>Scriptwriting &amp; outlines</li><li>Production coordination</li><li>Social video editing</li></ul>
+          <div class="skill-tools lang-zh"><span class="pill-dk">腳本企劃</span><span class="pill-dk">直播執行</span><span class="pill-dk">影音採訪</span></div>
+          <div class="skill-tools lang-en"><span class="pill-dk">Scripting</span><span class="pill-dk">Live Streaming</span><span class="pill-dk">Video Interviews</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-no">S/06</div>
+          <div class="skill-name lang-zh">數位廣告</div>
+          <div class="skill-name lang-en">Digital Advertising</div>
+          <ul class="skill-items lang-zh"><li>數位廣告投放操作</li><li>廣告策略規劃</li><li>成效分析與優化</li></ul>
+          <ul class="skill-items lang-en"><li>Campaign management</li><li>Ad-strategy planning</li><li>Analytics &amp; optimization</li></ul>
+          <div class="skill-tools lang-zh"><span class="pill-dk">社群廣告</span><span class="pill-dk">成效追蹤</span><span class="pill-dk">市場調查</span></div>
+          <div class="skill-tools lang-en"><span class="pill-dk">Social Ads</span><span class="pill-dk">Tracking</span><span class="pill-dk">Research</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 精選作品 / Work -->
+<section id="work" class="section section--paper">
+  <div class="wrap sec-grid">
+    <div class="sec-rail">
+      <div class="sec-num">04</div>
+      <div class="sec-title"><span class="lang-zh">精選作品</span><span class="lang-en">Selected Work</span></div>
+      <p class="sec-kicker"><span class="lang-zh">用作品說話。</span><span class="lang-en">Let the work speak.</span></p>
+    </div>
+    <div class="sec-body">
+      <div class="proj-grid">
+
+        <div class="proj">
+          <div class="proj-client lang-zh">2026 福爾摩沙永續保育國際論壇暨展覽</div>
+          <div class="proj-client lang-en">2026 Formosa Sustainable Conservation International Forum</div>
+          <div class="proj-title lang-zh">專案經理 × 論壇秘書處</div>
+          <div class="proj-title lang-en">Project Manager × Forum Secretariat</div>
+          <div class="proj-desc lang-zh">內政部國家公園署主辦之國際論壇暨展覽，擔任專案 PM 與秘書處窗口，主責 33 位國際與 26 位國內講者邀請聯繫、議程與流程規劃、跨單位溝通、現場執行與百人交流晚宴統籌。兩天吸引千人以上報名。</div>
+          <div class="proj-desc lang-en">For this international forum and exhibition hosted by the National Park Service (Ministry of the Interior), I served as project PM and secretariat liaison — leading invitations for 33 international and 26 domestic speakers, agenda and run-of-show planning, cross-agency communication, on-site execution, and a 100-guest networking dinner. The two days drew over a thousand registrations.</div>
+          <div class="proj-tags lang-zh"><span class="pill">專案管理</span><span class="pill">論壇策展</span><span class="pill">永續保育</span></div>
+          <div class="proj-tags lang-en"><span class="pill">Project Mgmt</span><span class="pill">Forum Curation</span><span class="pill">Conservation</span></div>
+        </div>
+
+        <div class="proj">
+          <div class="proj-client">行動基因 ACT Genomics</div>
+          <div class="proj-title lang-zh">公關 PR 議題操作</div>
+          <div class="proj-title lang-en">PR &amp; Issue Campaign</div>
+          <div class="proj-desc lang-zh">協助建立媒體關係，共獲得至少 8 篇具代表性媒體報導，刊登於中時、中央社、udn、遠見、良醫健康等主流媒體。安排創辦人及高階主管媒體專訪，籌辦媒體餐敘與實驗室邀訪活動，深化品牌公信力與市場聲量。</div>
+          <div class="proj-desc lang-en">Built media relationships that secured at least 8 notable features in major outlets including China Times, CNA, UDN, Global Views, and GoodDoctor. Arranged executive interviews and hosted media gatherings and lab visits, deepening the brand's credibility and share of voice.</div>
+          <div class="proj-tags lang-zh"><span class="pill">媒體公關</span><span class="pill">品牌策略</span><span class="pill">遺傳性癌症議題</span></div>
+          <div class="proj-tags lang-en"><span class="pill">Media PR</span><span class="pill">Brand Strategy</span><span class="pill">Hereditary Cancer</span></div>
+        </div>
+
+        <div class="proj">
+          <div class="proj-client">Microsoft × <span class="lang-zh">關鍵評論網</span><span class="lang-en">The News Lens</span></div>
+          <div class="proj-title lang-zh">數位轉型影音企劃</div>
+          <div class="proj-title lang-en">Digital-Transformation Video Series</div>
+          <div class="proj-desc lang-zh">2019 年 3 月至 2020 年 10 月，共完成兩季 9 部系列影音，片長 10–15 分鐘。為公司內部新開發產品，成功開啟 B2B 端討論聲量。合作夥伴包含中華電信、遠傳、台達電子、水利署、高雄市政府、KKBOX 等指標企業。</div>
+          <div class="proj-desc lang-en">From March 2019 to October 2020, produced two seasons of 9 videos (10–15 min each) for a newly developed internal product, opening B2B conversation and momentum. Partners included Chunghwa Telecom, FarEasTone, Delta Electronics, the Water Resources Agency, Kaohsiung City Government, and KKBOX.</div>
+          <div class="proj-tags lang-zh"><span class="pill">影音企劃</span><span class="pill">B2B行銷</span><span class="pill">數位轉型</span></div>
+          <div class="proj-tags lang-en"><span class="pill">Video Production</span><span class="pill">B2B Marketing</span><span class="pill">Digital Transformation</span></div>
+        </div>
+
+        <div class="proj">
+          <div class="proj-client lang-zh">《餐豐露宿》節目</div>
+          <div class="proj-client lang-en">《餐豐露宿》 Original Program</div>
+          <div class="proj-title lang-zh">影音節目執行製片</div>
+          <div class="proj-title lang-en">Line Producer, Original Program</div>
+          <div class="proj-desc lang-zh">2020 年 9 月至 2021 年 1 月，共完成 6 集，片長約 10 分鐘，平均單集觀看次數達 5 萬。負責企劃提案、腳本大綱、主持人與來賓邀約、拍攝場地協調，以及數位廣告策略投放與業務合作開發。</div>
+          <div class="proj-desc lang-en">From September 2020 to January 2021, delivered 6 episodes (~10 min each) averaging 50,000 views per episode. Owned pitching, script outlines, host and guest booking, location coordination, and digital-ad strategy and business development.</div>
+          <div class="proj-tags lang-zh"><span class="pill">節目製作</span><span class="pill">執行製片</span><span class="pill">廣告投放</span></div>
+          <div class="proj-tags lang-en"><span class="pill">Program Production</span><span class="pill">Line Producing</span><span class="pill">Ad Campaigns</span></div>
+        </div>
+
+        <div class="proj">
+          <div class="proj-client lang-zh">SDGs 永續報導</div>
+          <div class="proj-client lang-en">SDGs Sustainability Reporting</div>
+          <div class="proj-title lang-zh">數位專題報導製作</div>
+          <div class="proj-title lang-en">Digital Feature Series</div>
+          <div class="proj-desc lang-zh">從零開始開發數位線上專題報導，深入採訪全台各地永續相關產業，涵蓋前期訪談調查、網頁建置規劃。呈現多元視角，體現品牌對社會議題的深度關注。</div>
+          <div class="proj-desc lang-en">Built a digital feature series from scratch, reporting on sustainability-related industries across Taiwan — from early interviews and research to web-build planning — presenting diverse perspectives on social issues.</div>
+          <div class="proj-tags lang-zh"><span class="pill">數位專題</span><span class="pill">永續議題</span><span class="pill">深度採訪</span></div>
+          <div class="proj-tags lang-en"><span class="pill">Digital Feature</span><span class="pill">Sustainability</span><span class="pill">In-depth Reporting</span></div>
+        </div>
+
+        <div class="proj">
+          <div class="proj-client lang-zh">朵茉麗蔻 Domohorn Wrinkle</div>
+          <div class="proj-client lang-en">Domohorn Wrinkle 朵茉麗蔻</div>
+          <div class="proj-title lang-zh">企業品牌形象採訪</div>
+          <div class="proj-title lang-en">Brand-Image Feature Interview</div>
+          <div class="proj-desc lang-zh">撰寫品牌形象廣編文章，赴日進行獨家採訪，深入了解品牌核心理念，轉化為引人入勝的中文內容，協助品牌在台灣市場建立精緻形象。</div>
+          <div class="proj-desc lang-en">Wrote a brand-image advertorial and traveled to Japan for an exclusive interview, distilling the brand's core philosophy into compelling Chinese content to build a refined image in the Taiwan market.</div>
+          <div class="proj-tags lang-zh"><span class="pill">品牌形象</span><span class="pill">廣編內容</span><span class="pill">赴日採訪</span></div>
+          <div class="proj-tags lang-en"><span class="pill">Brand Image</span><span class="pill">Advertorial</span><span class="pill">Interview in Japan</span></div>
+        </div>
+
+        <div class="proj proj--dark proj--full">
+          <div class="proj-client lang-zh">合作客戶 × 媒體夥伴</div>
+          <div class="proj-client lang-en">Clients &amp; Media Partners</div>
+          <div class="proj-title lang-zh">橫跨多元產業的豐富履歷</div>
+          <div class="proj-title lang-en">A portfolio across industries</div>
+          <div class="proj-desc lang-zh">關鍵評論網 · 天下雜誌 · Cheers 工作人 · 遠見雜誌 · 風傳媒 · 數位時代 · Pinkoi · 資策會 · 微軟 · AWS · 遠傳 · 文策院</div>
+          <div class="proj-desc lang-en">The News Lens · CommonWealth · Cheers · Global Views · The Storm Media · Business Next · Pinkoi · III · Microsoft · AWS · FarEasTone · TAICCA</div>
+          <div class="proj-tags lang-zh"><span class="pill-dk">科技</span><span class="pill-dk">健康醫療</span><span class="pill-dk">政府</span><span class="pill-dk">電商</span></div>
+          <div class="proj-tags lang-en"><span class="pill-dk">Technology</span><span class="pill-dk">Healthcare</span><span class="pill-dk">Government</span><span class="pill-dk">E-commerce</span></div>
+        </div>
+
+      </div>
+
+      <a href="case-freelance.html" class="proj-feature">
+        <div>
+          <div class="pf-eyebrow lang-zh">2023–迄今 · 案例研究</div>
+          <div class="pf-eyebrow lang-en">2023–Present · Case Study</div>
+          <div class="pf-title lang-zh">專案整體成效</div>
+          <div class="pf-title lang-en">Overall Project Impact</div>
+          <div class="pf-desc lang-zh">橫跨 17+ 客戶、40+ 專案的整合服務全紀錄，涵蓋醫療、政府、科技、品牌與媒體五大領域。點擊查看完整案例研究。</div>
+          <div class="pf-desc lang-en">The full record of integrated services across 17+ clients and 40+ projects, spanning healthcare, government, technology, brands, and media.</div>
+        </div>
+        <span class="pf-action"><span class="lang-zh">查看完整案例</span><span class="lang-en">View full case study</span><span class="arw">→</span></span>
+      </a>
+
+      <div class="sel">
+        <span class="sel-label"><span class="lang-zh">SELECTED · 永續・地方 採訪選輯</span><span class="lang-en">SELECTED · Sustainability &amp; Local Reporting</span></span>
+        <a class="sel-row" href="https://www.cw.com.tw/article/5139390" target="_blank" rel="noopener">
+          <span class="sel-media"><span class="lang-zh">天下雜誌</span><span class="lang-en">CommonWealth</span></span>
+          <span class="sel-topic"><span class="lang-zh">東部・綠能</span><span class="lang-en">East Coast · Green Energy</span></span>
+          <span class="sel-title lang-zh">從地熱到微水力：東部淨零領航，開創自然資源與社區共榮的綠能治理新典範 →</span>
+          <span class="sel-title lang-en">From geothermal to micro-hydro: how Taiwan's east coast leads on net-zero and community-centered green governance →</span>
+        </a>
+        <a class="sel-row" href="https://www.cw.com.tw/article/5140527" target="_blank" rel="noopener">
+          <span class="sel-media"><span class="lang-zh">天下雜誌</span><span class="lang-en">CommonWealth</span></span>
+          <span class="sel-topic"><span class="lang-zh">森林保育</span><span class="lang-en">Forest Conservation</span></span>
+          <span class="sel-title lang-zh">林業保育署媒合公私協力，從山村培力到科技護林，開啟自然治理新篇章 →</span>
+          <span class="sel-title lang-en">The Forestry Bureau brings public and private together — from village empowerment to tech-enabled forest protection →</span>
+        </a>
+        <a class="sel-row" href="https://formosa.gvm.com.tw/gongsheng/5/" target="_blank" rel="noopener">
+          <span class="sel-media"><span class="lang-zh">遠見雜誌</span><span class="lang-en">Global Views</span></span>
+          <span class="sel-topic"><span class="lang-zh">地方創生</span><span class="lang-en">Local Revitalization</span></span>
+          <span class="sel-title lang-zh">從陪伴做起，找回部落女力精神，以原住民粽阿粨寫下地方創生故事－粨發粨粽 →</span>
+          <span class="sel-title lang-en">Reviving Indigenous women's spirit through the traditional "abai" dumpling — a local-revitalization story →</span>
+        </a>
+        <a class="sel-row" href="https://formosa.gvm.com.tw/gongsheng/1/" target="_blank" rel="noopener">
+          <span class="sel-media"><span class="lang-zh">遠見雜誌</span><span class="lang-en">Global Views</span></span>
+          <span class="sel-topic"><span class="lang-zh">永續農業</span><span class="lang-en">Sustainable Agriculture</span></span>
+          <span class="sel-title lang-zh">從農田到餐桌一起來！瓦拉米十年創造共生經濟新生態－銀川永續農場 →</span>
+          <span class="sel-title lang-en">From farm to table: ten years of a symbiotic economy at Yinchuan Sustainable Farm →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 電子報 · 時滯錯覺 / Newsletter -->
+<section id="newsletter" class="news">
+  <div class="wrap">
+    <div class="news-eye"><span class="lang-zh">NEWSLETTER · 個人書寫</span><span class="lang-en">NEWSLETTER · Personal Writing</span></div>
+    <h2 class="news-title"><span class="lang-zh">時滯錯覺</span><span class="lang-en">Chronostasis</span></h2>
+    <p class="news-tag lang-zh">一場關於「時間落差」的書寫實驗。試著在旅途日常、內在對話、工作掙扎與那些懸而未決的提問中，為你打撈出碎裂在快節奏生活裡的真實。</p>
+    <p class="news-tag lang-en">A writing experiment about the lag of time — trying, amid travel and routine, inner dialogue, the struggles of work, and the questions left unresolved, to salvage the real from a life lived too fast.</p>
+    <a class="btn btn-fill" href="https://contd.substack.com/" target="_blank" rel="noopener"><span class="lang-zh">前往訂閱 →</span><span class="lang-en">Subscribe →</span></a>
+  </div>
+</section>
+
+<!-- 05 聯絡方式 / Contact -->
+<section id="contact" class="section section--paper">
+  <div class="wrap sec-grid">
+    <div class="sec-rail">
+      <div class="sec-num">05</div>
+      <div class="sec-title"><span class="lang-zh">聯絡方式</span><span class="lang-en">Contact</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="ct-lead lang-zh">無論是整合行銷專案合作、品牌內容策略諮詢，或是媒體公關需求，歡迎與我聯繫。期待聽到你的故事，一起找出最適合的傳播策略。</p>
+      <p class="ct-lead lang-en">Whether it's an integrated-marketing collaboration, brand-content strategy, or a media and PR need, I'd love to hear from you — and to find the communication strategy that fits your story.</p>
+      <a class="ct-link" href="mailto:shih648@gmail.com"><span class="ct-k">EMAIL</span><span class="ct-v">shih648@gmail.com</span></a>
+      <a class="ct-link" href="tel:0905639623"><span class="ct-k">PHONE</span><span class="ct-v">0905-639-623</span></a>
+      <a class="ct-link" href="https://contd.substack.com/" target="_blank" rel="noopener"><span class="ct-k">SUBSTACK</span><span class="ct-v"><span class="lang-zh">時滯錯覺 · contd.substack.com</span><span class="lang-en">Chronostasis · contd.substack.com</span></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <span>© 2026 羅詩樺 Shih-Hua Luo</span>
+    <span><span class="lang-zh">整合行銷 · 內容策略 · 媒體公關</span><span class="lang-en">Integrated Marketing · Content Strategy · Media PR</span></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var KEY = 'site-lang';
+  var root = document.documentElement;
+  var titles = { zh: '羅詩樺 — 整合行銷 × 內容策略', en: 'Daisy Luo — Integrated Marketing × Content Strategy' };
+  function apply(l) {
+    root.setAttribute('data-lang', l);
+    root.setAttribute('lang', l === 'en' ? 'en' : 'zh-TW');
+    document.title = titles[l] || titles.zh;
+    try { localStorage.setItem(KEY, l); } catch (e) {}
+  }
+  var current = root.getAttribute('data-lang') === 'en' ? 'en' : 'zh';
+  apply(current);
+  var btn = document.getElementById('langToggle');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      apply(root.getAttribute('data-lang') === 'en' ? 'zh' : 'en');
+    });
+  }
+})();
+</script>
+</body>
+</html>
